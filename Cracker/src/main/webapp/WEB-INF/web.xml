@@ -4,9 +4,17 @@
         <servlet-name>delServlet</servlet-name>
         <servlet-class>Controllers.delServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addUserServlet</servlet-name>
+        <servlet-class>Controllers.addUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>delServlet</servlet-name>
         <url-pattern>/delServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addUserServlet</servlet-name>
+        <url-pattern>/addUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

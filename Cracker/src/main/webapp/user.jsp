@@ -19,11 +19,15 @@
             </div>
             <div class="clear"></div>
         </div>
-
-        <form action="user.jsp" method="GET">
-            <button>Удалить</button>
+        
+        //кнопка добавить
+        <form action="register.jsp" method="GET">
+            <button>Добавить</button>
         </form>
 
+        <form action="user.jsp" method="GET">
+            <button type="submit">Добавить</button>
+        </form>
         
 
        
