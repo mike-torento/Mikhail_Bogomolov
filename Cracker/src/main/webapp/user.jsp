@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Админ панель</title>
         <link rel="stylesheet" href="resources/css/user.css" type="text/css" media="screen" charset="utf-8" />
-
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
     </head>
     <body>
         <div id="header">
@@ -20,16 +20,40 @@
             <div class="clear"></div>
         </div>
         
-        //кнопка добавить
-        <form action="register.jsp" method="GET">
+        
+        <form action="javascript:window.open('register.jsp', 'joe', config='height=270,width=200')" method="GET">
             <button>Добавить</button>
         </form>
 
-        <form action="user.jsp" method="GET">
-            <button type="submit">Добавить</button>
-        </form>
         
-
+       
+        <script type="text/javascript">
+        function userChecked() { 
+            var cboxes = document.getElementsByName('user');
+            var len = cboxes.length;
+            var k=0;
+          for (var i=0; i<len; i++) {
+            if(cboxes[i].checked){ k++;   }
+              
+          }   
+            var users = new Array(k); 
+           
+            for (var i=0; i<len; i++) {
+                if(cboxes[i].checked) {users.push(cboxes[i].value); }
+            }
+            
+            
+            $.get('delServlet',function(data) {
+            alert(data);
+            });
+        }
+        </script>
+        
+          <form action="user.jsp">
+            <button type="submit" OnClick="userChecked()">Удалить</button>
+          </form>
+        
+        
        
         <div id="table" class="help">
             <h1>Пользователи:</h1>
@@ -50,7 +74,7 @@
                         <c:forEach var="num" items="${obj.getUserList()}">
 
                             <tr id="id_1">
-                                <td class="checkbox" ><input type="checkbox" name="${num.getIdUser()}" /></td>
+                                <td class="checkbox" ><input type="checkbox" name="user" value="${num.getIdUser()}"/></td>
                                 <td> ${num.getIdUser()}</td>
                                 <td>${num.getLogin()}</td>
                                 <td>${num.getPass()}</td>

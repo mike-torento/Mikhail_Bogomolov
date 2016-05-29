@@ -18,7 +18,7 @@
         </div>
 
         <div class="field">
-            <a href="#" id="forgot">Забыли пароль?</a>
+            <a href="javascript:window.open('register.jsp', 'joe', config='height=270,width=200')" id="forgot">Регистрация</a>
             <label>Пароль:</label>
             <div class="input"><input type="password" name="pass" value="" id="pass" /></div>
         </div>
