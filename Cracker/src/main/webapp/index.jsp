@@ -11,7 +11,7 @@
 
     <body>
 
-        <form id="loginForm" action="user.jsp" method="GET">
+        <form id="loginForm" action="user.jsp" method="POST">
         <div class="field">
               <label>Имя пользователя:</label>
             <div class="input"><input type="text" name="login" value="" id="login" /></div>
