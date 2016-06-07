@@ -20,64 +20,9 @@
             <div class="clear"></div>
         </div>
         
-        <form action="javascript:window.open('register.jsp', 'joe', config='height=270,width=200')" method="GET">
-            <button>Добавить</button>
-        </form>
-
-        <script type="text/javascript">
-        function userChecked() { 
-            var cboxes = document.getElementsByName('user');
-            var len = cboxes.length;
-            var k=0;
-          for (var i=0; i<len; i++) {
-            if(cboxes[i].checked){ k++;   }
-              
-          }   
-            var deleteUsers = new Array(k); 
-           
-            for (var i=0; i<len; i++) {
-                if(cboxes[i].checked) {deleteUsers.push(cboxes[i].value); }
-            }
-            
-//            
-            $.get('delServlet',len,function(data) {
-            alert(data);
-            });
-            
-        }
         
-        function getHTTPObject() {
-            var xmlhttp = false;
-            xmlhttp = new XMLHttpRequest();
-            return xmlhttp; 
-        }
-        
-        function sendInfo() {
-    var URL = ""; //depends on you
-    var Params = encodeURI("var1="+val1+"var2="+val2+"var3="+val3);
-    console.log(Params);
-    var ajax = getHTTPObject();     
-    ajax.open("POST", URL, true); //True:Sync - False:ASync
-    ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    ajax.setRequestHeader("Content-length", Params.length);
-    ajax.setRequestHeader("Connection", "close");
-    ajax.onreadystatechange = function() { 
-        if (ajax.readyState === 4 && ajax.status === 200) {
-            alert(ajax.responseText);
-        } 
-    }
-    ajax.send(Params);
-}
-        </script>
-        
-            
-            
-          <form action="user.jsp">
-              <button type="submit" OnClick="userChecked()">Удалить</button>
-          </form>
-        
-        
-       
+   
+       <form action="deleteUser.jsp" method="POST">
         <div id="table" class="help">
             <h1>Пользователи:</h1>
             <div class="col w10 last">
@@ -96,8 +41,8 @@
                         <jsp:useBean id="obj" scope="page" class="dao.UserDAO" />
                         <c:forEach var="num" items="${obj.getUserList()}">
 
-                            <tr id="id_1">
-                                <td class="checkbox" ><input type="checkbox" name="user" value="${num.getIdUser()}"/></td>
+                            <tr id="${num.getIdUser()}">
+                                <td class="checkbox" ><input type="checkbox" name="${num.getIdUser()}" value="${num.getIdUser()}"/></td>
                                 <td> ${num.getIdUser()}</td>
                                 <td>${num.getLogin()}</td>
                                 <td>${num.getPass()}</td>
@@ -107,11 +52,22 @@
                             </tr>
 
                         </c:forEach>
+                        <tr>
+                            <td></td>
+                            <td> <button type="submit">Удалить</button></td>
+                            
+                        </tr>
                     </table>
+                      
                 </div>							
             </div>
             <div class="clear"></div>
         </div>
+       </form>               
+         <form action="javascript:window.open('register.jsp', 'joe', config='height=270,width=200')" method="GET">
+                                    <button>Добавить</button>
+                                 </form>               
+                        
         <div id="footer">
             <p class="last">Администраторская панель <a href=""></a></p>
         </div>

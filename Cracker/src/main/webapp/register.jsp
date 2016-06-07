@@ -8,7 +8,7 @@
           <link href="resources/css/style.css" rel="stylesheet" />
     </head>
     <body>
-     <form action="addUserServlet" method="GET">
+     <form action="addUser.jsp" method="POST">
         <div class="field">
               <label>Логин:</label>
             <div class="input"><input type="text" name="login" value="" id="login" /></div>
