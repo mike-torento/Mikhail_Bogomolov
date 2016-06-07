@@ -6,6 +6,10 @@ padding:0 20px;
 font-family: Lucida Grande, Verdana, Arial, sans-serif;
 }
 
+otstup {
+margin-top: 240px;
+}
+
 #header {
 margin:0;
 padding:5px;
@@ -75,7 +79,6 @@ background:transparent;
 #footer p {
 font-size:11px;
 }
-
 
 
 
@@ -288,6 +291,8 @@ background-repeat:no-repeat;
 background-image:url(../images/icons.png);
 }
 
+
+
 a.button .icon {background-image:url(../images/icons_gray.png);}
 
 .icon.single_user{background-position:-13px -13px}
@@ -351,3 +356,4 @@ a.button .icon {background-image:url(../images/icons_gray.png);}
 .icon.arrow_down{background-position:-205px -445px}
 .icon.arrow_up{background-position:-253px -445px}
 /*-------------------------ICONS-------------------------*/
+

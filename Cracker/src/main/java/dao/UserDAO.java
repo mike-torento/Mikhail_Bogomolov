@@ -47,6 +47,7 @@ public class UserDAO {
                 dbConnection.close();
             }
         }
+        dbConnection.close();
     }
 
     public static void deleteUser(Long id) throws SQLException {
@@ -68,7 +69,7 @@ public class UserDAO {
                 dbConnection.close();
             }
         }
-
+        dbConnection.close();
     }
 
     public static List<User> getUserList() throws SQLException {
@@ -88,7 +89,7 @@ public class UserDAO {
             u.setEmail(rs.getString("email"));
             userList.add(u);
         }
-
+    dbConnection.close();
         return userList;
     }
 
@@ -108,7 +109,40 @@ public class UserDAO {
             u.setEmail(rs.getString("email"));
             return u;
         }
+        dbConnection.close();
+        return u;
+    }
+    
+    public static User getUserByID(Long id) throws SQLException {
+        User u = new User();
+        Connection dbConnection = getConnection();
+        Statement statement = dbConnection.createStatement();
+        String selectUser = "SELECT id_user,login,password,name,phone,email from USERTABLE where (id_user)='" + id + "';";
+
+        ResultSet rs = statement.executeQuery(selectUser);
+        while (rs.next()) {
+            u.setIdUser(rs.getLong("id_user"));
+            u.setLogin(rs.getString("login"));
+            u.setPass(rs.getString("password"));
+            u.setName(rs.getString("name"));
+            u.setPhone(rs.getString("phone"));
+            u.setEmail(rs.getString("email"));
+            return u;
+        }
+        dbConnection.close();
         return u;
     }
 
+    public static void replaceUser(Long id, User newUser) throws SQLException{
+        Connection dbConnection = getConnection();
+        Statement statement = dbConnection.createStatement();
+        String replaceUser="UPDATE USERTABLE SET login ='" 
+                +newUser.getLogin()  +"',password='"
+                +newUser.getPass()+  "', name='"
+                +newUser.getName()+"',phone='"
+                +newUser.getPhone()+"',email='"
+                +newUser.getEmail()+"' where id_user='" + id + "';";
+         statement.executeUpdate(replaceUser);   
+         dbConnection.close();
+    }
 }

@@ -8,18 +8,21 @@
     </head>
     <body>
         <%
-            
+            Long id=new Long(request.getParameter("id"));
             String login = request.getParameter("login");
             String pass = request.getParameter("pass");
             String name = request.getParameter("name");
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
-            User user = new User(login,pass,name,phone,email);
-            dao.UserDAO.addNewUser(user);
-               String site = new String("user.jsp");
-                response.setStatus(response.SC_MOVED_TEMPORARILY);
-                response.setHeader("Location", site);
+            User oldUser = dao.UserDAO.getUserByID(id);
+            User newUser = new User(login, pass, name, phone, email);
+            dao.UserDAO.replaceUser(oldUser.getIdUser(), newUser);
+            
+            String site = new String("user.jsp");
+            response.setStatus(response.SC_MOVED_TEMPORARILY);
+            response.setHeader("Location", site);
+
+
         %>
-        
     </body>
 </html>
