@@ -6,9 +6,9 @@ import java.sql.*;
 import java.util.*;
 
 public class ServiceDAO {
-        static String url = "jdbc:postgresql://localhost:5432/postgres";
-        static String name = "postgres";
-        static String password = "12345";
+    static String url = "jdbc:postgresql://127.0.0.1:5432/postgres";
+    static String name = "postgres";
+    static String password = "12345";
 private static Connection getConnection() {
         Connection dbConnection = null;
    
@@ -40,7 +40,9 @@ public static List<Service> getServiceList() throws SQLException{
            s.setPrice(rs.getBigDecimal("price"));
            s.setInfo(rs.getString("info"));
            serviceList.add(s);
+
        }
+       dbConnection.close();
        return serviceList;
    }    
         
