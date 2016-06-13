@@ -1,3 +1,4 @@
+<%@page import="model.User"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Service"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -36,7 +37,8 @@
                             String login = request.getParameter("login");
                             out.println(login);%> </h3>
                             
-                        <form action="addService.jsp" method="POST">
+                        <form action="addServicePage.jsp" method="POST">
+                            <input type="hidden" name="login" value='<%= login %>' />
                             <button>Подключить услугу</button>
                         </form>  
 
@@ -51,17 +53,19 @@
                                     <th>Цена</th>
                                     <th>Описание</th>
                                 </tr>
-                                <% List<Service> services1 = dao.ServiceDAO.getServiceList();
-                                    for (int i = 0; i < services1.size(); i++) {
+                                <%  User u = dao.UserDAO.getUserByLogin(login);                                    
+                                    List<Service> services = dao.ServiceDAO.getByUserID(u.getIdUser());
+                                    for (int i = 0; i < services.size(); i++) {
                                 %>
                                 <tr id="${num1.getId()}"> 
-                                    <td class="checkbox" ><input type="checkbox" name='<%services1.get(i).getId(); %>' value=""/></td>
-                                    <td>  <% out.println(services1.get(i).getId()); %></td>
-                                    <td><% out.println(services1.get(i).getName()); %></td>
-                                    <td><% out.println(services1.get(i).getPrice()); %></td>
-                                    <td><% out.println(services1.get(i).getInfo()); %></td>
+                                    <td class="checkbox" ><input type="checkbox" name='<%services.get(i).getId(); %>' value=""/></td>
+                                    <td>  <% out.println(services.get(i).getId()); %></td>
+                                    <td><% out.println(services.get(i).getName()); %></td>
+                                    <td><% out.println(services.get(i).getPrice()); %></td>
+                                    <td><% out.println(services.get(i).getInfo()); %></td>
                                 </tr>
                                 <%}%>
+                            </table>
                         </form>
                         <div class="clr"></div>
                     </div>

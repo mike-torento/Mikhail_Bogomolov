@@ -50,6 +50,7 @@ public class UserDAO {
         dbConnection.close();
     }
 
+    
     public static void deleteUser(Long id) throws SQLException {
         Connection dbConnection = null;
         Statement statement = null;
@@ -107,7 +108,7 @@ public class UserDAO {
             u.setName(rs.getString("name"));
             u.setPhone(rs.getString("phone"));
             u.setEmail(rs.getString("email"));
-            return u;
+            
         }
         dbConnection.close();
         return u;
